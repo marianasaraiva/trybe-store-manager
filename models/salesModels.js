@@ -7,7 +7,6 @@ const getAll = async () => {
   ON s.id = sp.sale_id
   ORDER BY s.id`;
   const [result] = await connection.execute(query);
-  console.log(result);
   return result;
 };
 
