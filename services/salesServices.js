@@ -19,7 +19,17 @@ const getById = async (id) => {
   return result;
 };
 
+const create = async (array) => {
+  // const newSale = await SalesModel.getById(id);
+  // if (newSale.length) return false;
+  
+  const result = await SalesModel.create(array);
+
+  return result;
+};
+
 module.exports = {
   getAll,
   getById,
+  create,
 };

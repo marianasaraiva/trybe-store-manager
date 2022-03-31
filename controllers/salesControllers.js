@@ -29,7 +29,22 @@ const getById = async (req, res, next) => {
   }
 };
 
+const create = async (req, res, next) => {
+  try {
+    const sale = await SaleService.create(req.body);
+    
+    // if (!sale) {
+    //   return res.status(409).json({ message: 'Product already exists' });
+    // }
+
+    res.status(201).json(sale);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getAll,
   getById,
+  create,
 };
