@@ -15,13 +15,14 @@ const getById = async (id) => {
 const getByName = async (name) => {
   const query = 'SELECT * FROM StoreManager.products WHERE name = ?';
   const [result] = await connection.execute(query, [name]);
+
   return result;
 };
 
 const create = async ({ name, quantity }) => {
   const query = 'INSERT INTO StoreManager.products (name, quantity) VALUES (?, ?)';
   const [result] = await connection.execute(query, [name, quantity]);
-  
+
   return {
     id: result.insertId,
     name,
@@ -40,10 +41,16 @@ const update = async ({ id, name, quantity }) => {
   };
 };
 
+const deleteById = async (id) => {
+  const query = 'DELETE FROM StoreManager.products WHERE id= ?';
+  await connection.execute(query, [id]);
+};
+
 module.exports = {
   getAll,
   getById,
   getByName,
   create,
   update,
+  deleteById,
 };

@@ -35,7 +35,6 @@ const create = async ({ name, quantity }) => {
 
 const update = async ({ id, name, quantity }) => {
   const result = await ProductModel.getById(id);
-  console.log(result);
   if (!result.length) return false;
 
   const updateProduct = await ProductModel.update({ id, name, quantity });
@@ -43,9 +42,19 @@ const update = async ({ id, name, quantity }) => {
   return updateProduct;
 };
 
+const deleteById = async (id) => {
+  const result = await ProductModel.getById(id);
+  if (!result.length) return false;
+
+  const deleteProduct = await ProductModel.deleteById(id);
+
+  return deleteProduct;
+};
+
 module.exports = {
   getAll,
   getById,
   create,
   update,
+  deleteById,
 };
