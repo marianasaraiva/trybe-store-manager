@@ -1,11 +1,5 @@
 const SalesModel = require('../models/salesModels');
 
-// const isValid = (name, quantity) => {
-//   if (!name || typeof name !== 'string') return false;
-//   if (!quantity || typeof quantity !== 'number') return false;
-//   return true;
-// };
-
 const getAll = async () => {
   const result = await SalesModel.getAll();
   return result;
@@ -20,16 +14,20 @@ const getById = async (id) => {
 };
 
 const create = async (array) => {
-  // const newSale = await SalesModel.getById(id);
-  // if (newSale.length) return false;
-  
   const result = await SalesModel.create(array);
 
   return result;
+};
+
+const update = async (productUpdate) => {
+  const updateProduct = await SalesModel.update(productUpdate);
+
+  return updateProduct;
 };
 
 module.exports = {
   getAll,
   getById,
   create,
+  update,
 };

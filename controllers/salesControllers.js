@@ -32,12 +32,26 @@ const getById = async (req, res, next) => {
 const create = async (req, res, next) => {
   try {
     const sale = await SaleService.create(req.body);
-    
-    // if (!sale) {
-    //   return res.status(409).json({ message: 'Product already exists' });
-    // }
 
     res.status(201).json(sale);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const update = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const productUpdate = req.body[0];
+    productUpdate.saleId = id;
+
+    const updateProduct = await SaleService.update(productUpdate);
+    
+    // if (updateProduct === false) {
+    //   return res.status(404).json({ message: 'Product not found' });
+    // }
+
+    res.status(200).json(updateProduct);
   } catch (error) {
     next(error);
   }
@@ -47,4 +61,5 @@ module.exports = {
   getAll,
   getById,
   create,
+  update,
 };

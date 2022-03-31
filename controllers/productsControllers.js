@@ -34,6 +34,13 @@ const create = async (req, res, next) => {
     const { name, quantity } = req.body;
 
     const product = await ProductService.create({ name, quantity });
+    console.log(product);
+
+    if (product.error) {
+      return res.status().json(product.error.message);
+    }
+
+    if (product === 'erro') return res.status(409).json({ message: '"name" is required' });
     
     if (!product) {
       return res.status(409).json({ message: 'Product already exists' });

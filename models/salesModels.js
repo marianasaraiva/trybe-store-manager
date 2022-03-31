@@ -11,7 +11,6 @@ const getAll = async () => {
 };
 
 const getById = async (id) => {
-  // const query = 'SELECT * FROM StoreManager.sales WHERE id = ?';
   const query = `SELECT s.date, sp.product_id AS productId, sp.quantity
   FROM 
     StoreManager.sales s
@@ -40,8 +39,26 @@ const create = async (array) => {
   };
 };
 
+const update = async ({ productId, quantity, saleId }) => {
+  const query = `UPDATE StoreManager.sales_products
+  SET product_id = ?, quantity = ?
+  WHERE sale_id = ?`;
+  await connection.execute(query, [productId, quantity, saleId]);
+  
+  return {
+    saleId,
+    itemUpdated: [
+      {
+        productId,
+        quantity,
+      },
+    ],
+  };
+};
+
 module.exports = {
   getAll,
   getById,
   create,
+  update,
 };

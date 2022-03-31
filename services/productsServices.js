@@ -1,10 +1,17 @@
 const ProductModel = require('../models/productsModels');
+// const { productSchema } = require('../schemasJoi/validations');
 
 // const isValid = (name, quantity) => {
 //   if (!name || typeof name !== 'string') return false;
 //   if (!quantity || typeof quantity !== 'number') return false;
 //   return true;
 // };
+
+// const validation = productSchema.validate(product);
+// console.log(validation);
+// if (validationSchema.error) {
+//   return { error: validation.error.details[0].message };
+// }
 
 const getAll = async () => {
   const result = await ProductModel.getAll();
@@ -23,7 +30,7 @@ const getById = async (id) => {
 const create = async ({ name, quantity }) => {
   const newProductValid = await ProductModel.getByName(name);
   if (newProductValid.length) return false;
-  
+
   const { id } = await ProductModel.create({ name, quantity });
 
   return {
