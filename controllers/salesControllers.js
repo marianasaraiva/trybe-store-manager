@@ -46,10 +46,6 @@ const update = async (req, res, next) => {
     productUpdate.saleId = id;
 
     const updateProduct = await SaleService.update(productUpdate);
-    
-    // if (updateProduct === false) {
-    //   return res.status(404).json({ message: 'Product not found' });
-    // }
 
     res.status(200).json(updateProduct);
   } catch (error) {

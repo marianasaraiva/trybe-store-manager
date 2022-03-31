@@ -1,17 +1,4 @@
 const ProductModel = require('../models/productsModels');
-// const { productSchema } = require('../schemasJoi/validations');
-
-// const isValid = (name, quantity) => {
-//   if (!name || typeof name !== 'string') return false;
-//   if (!quantity || typeof quantity !== 'number') return false;
-//   return true;
-// };
-
-// const validation = productSchema.validate(product);
-// console.log(validation);
-// if (validationSchema.error) {
-//   return { error: validation.error.details[0].message };
-// }
 
 const getAll = async () => {
   const result = await ProductModel.getAll();
@@ -64,4 +51,5 @@ module.exports = {
   create,
   update,
   deleteById,
+  // funcJoi,
 };
