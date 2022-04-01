@@ -2,27 +2,20 @@ const Joi = require('joi');
 
 const productSaleSchema = Joi.object({
   productId: Joi.number().min(0).required(),
-  quantity: Joi.number().min(0).required(),
+  quantity: Joi.number().min(1).required(),
 });
 
-const salesSchema = Joi.array().items(productSaleSchema);
+// const salesSchema = Joi.array().items(productSaleSchema);
 
 const validationSale = (req, res, next) => {
-  const { error } = salesSchema.validate(req.body);
+  const [teste] = req.body;
+  console.log('body', teste);
+  // console.log('salesSchema', salesSchema);
+  // console.log(req.body);
+  const { error } = productSaleSchema.validate(teste);
+  console.log('error message', error.message);
   if (error) throw error;
   next();
 };
 
 module.exports = validationSale;
-
-// let Joi = require('joi')
-// let service = Joi.object().keys({
-//   serviceName: Joi.string().required(),
-// })
-
-// let services = Joi.array().items(service)
-
-// let test = Joi.validate(
-//   [{ serviceName: 'service1' }, { serviceName: 'service2' }],
-//   services,
-// )
