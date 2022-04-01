@@ -1,7 +1,5 @@
 module.exports = (err, _req, res, _next) => {
-  // console.log(err.message);
   if (err.isJoi) {
-    console.log('Aqui');
     const statusCode = err.details[0].type;
     const result = (statusCode === 'any.required') ? '400' : '422';
 

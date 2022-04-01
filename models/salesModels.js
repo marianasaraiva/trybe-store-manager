@@ -33,6 +33,7 @@ const create = async (array) => {
   const result = array.map(({ productId, quantity }) => 
     connection.execute(query2, [productId, quantity, resultId.insertId]));
   await Promise.all(result);
+
   return {
     id: resultId.insertId,
     itemsSold: array,
