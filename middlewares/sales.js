@@ -9,8 +9,7 @@ const validationSale = (req, res, next) => {
   const [teste] = req.body;
   const { error } = productSaleSchema.validate(teste);
 
-  if (error) { 
-    console.log('aqui');
+  if (error) {
     throw error;
   }
   next();
