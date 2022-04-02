@@ -5,7 +5,7 @@ const SaleModel = require('../../../models/salesModels');
 const SaleService = require('../../../services/salesServices');
 
 describe('SalesService', () => {
-  describe('verifica se a venda retorna com sucesso', () => {
+  describe('verifica função GetAll se a venda retorna com sucesso', () => {
     const getAllSale = [
       {
         "saleId": 1,
@@ -41,7 +41,41 @@ describe('SalesService', () => {
     });
   });
 
-  describe('verifica se a venda é editada com sucesso', () => {
+  describe('verifica função GetById se a venda retorna com sucesso', () => {
+    const getByIdSale = [
+      {
+        "date": "2021-09-09T04:54:29.000Z",
+        "productId": 1,
+        "quantity": 2
+      },
+      {
+        "date": "2021-09-09T04:54:54.000Z",
+        "productId": 2,
+        "quantity": 2
+      }
+    ];
+
+    before(async () => {
+      const execute = getByIdSale;
+      sinon.stub(SaleModel, 'getById').resolves(execute);
+    });
+
+    after(async () => {
+      SaleModel.getById.restore();
+    });
+
+    it('retorna um array', async () => {
+      const response = await SaleService.getById(1);
+      expect(response).to.be.an('array')
+    });
+
+    it('tal array de objetos possui "productId" como propriedade', async () => {
+      const response = await SaleService.getById(1);
+      response.forEach((e) => expect(e).to.have.a.property('productId'));
+    });
+  });
+
+  describe('verifica função Update se a venda é editada com sucesso', () => {
     const updateSale = {
       "saleId": 1,
       "itemUpdated": [
@@ -73,7 +107,7 @@ describe('SalesService', () => {
     });
   });
 
-  describe('verifica se venda é inserida com sucesso', () => {
+  describe('verifica função Crete se venda é inserida com sucesso', () => {
     const createSale = {
       "id": 1,
       "itemsSold": [

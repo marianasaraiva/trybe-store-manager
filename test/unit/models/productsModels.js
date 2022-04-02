@@ -5,33 +5,7 @@ const connection = require('../../../models/connection');
 const ProductModel = require('../../../models/productsModels');
 
 describe('ProductModel', () => {
-  describe('verifica se produto quando é inserido com sucesso', () => {
-    const createProduct = {
-      name: "produto A",
-      quantity: 10
-    }
-
-    before(async () => {
-      const execute = [{ insertId: 1 }];
-      sinon.stub(connection, 'execute').resolves(execute);
-    });
-
-    after(async () => {
-      connection.execute.restore();
-    });
-
-    it('retorna um objeto', async () => {
-      const response = await ProductModel.create(createProduct);
-      expect(response).to.be.a('object')
-    });
-
-    it('tal objeto possui o "id" do novo produto inserido', async () => {
-      const response = await ProductModel.create(createProduct);
-      expect(response).to.have.a.property('id')
-    });
-  });
-
-  describe('verifica se produto retorna com sucesso', () => {
+  describe('verifica função GelAll se produto retorna com sucesso', () => {
     const getAllProduct = [
       {
         "id": 1,
@@ -65,7 +39,87 @@ describe('ProductModel', () => {
     });
   });
 
-  describe('verifica se produto é editado com sucesso', () => {
+  describe('verifica função GetById se a venda é requirida de  acordo com o id', () => {
+    const getByIdProduct = {
+      "id": 1,
+      "name": "produto A",
+      "quantity": 10
+    }
+
+    before(async () => {
+      const execute = [getByIdProduct];
+      sinon.stub(connection, 'execute').resolves(execute);
+    });
+
+    after(async () => {
+      connection.execute.restore();
+    });
+
+    it('retorna um objeto', async () => {
+      const response = await ProductModel.getById(1);
+      expect(response).to.be.a('object')
+    });
+
+    it('tal array de objetos possui "name" como propriedade', async () => {
+      const response = await ProductModel.getById(1);
+      expect(response).to.have.a.property('name');
+    });
+  });
+
+  describe('verifica função GetByName se a venda é requirida de  acordo com o id', () => {
+    const getByIdProduct = {
+      "id": 1,
+      "name": "produto A",
+      "quantity": 10
+    }
+
+    before(async () => {
+      const execute = [getByIdProduct];
+      sinon.stub(connection, 'execute').resolves(execute);
+    });
+
+    after(async () => {
+      connection.execute.restore();
+    });
+
+    it('retorna um objeto', async () => {
+      const response = await ProductModel.getByName('produto A');
+      expect(response).to.be.a('object')
+    });
+
+    it('tal array de objetos possui "name" como propriedade', async () => {
+      const response = await ProductModel.getByName('produto A');
+      expect(response).to.have.a.property('name');
+    });
+  });
+
+  describe('verifica função Create se produto quando é inserido com sucesso', () => {
+    const createProduct = {
+      name: "produto A",
+      quantity: 10
+    }
+
+    before(async () => {
+      const execute = [{ insertId: 1 }];
+      sinon.stub(connection, 'execute').resolves(execute);
+    });
+
+    after(async () => {
+      connection.execute.restore();
+    });
+
+    it('retorna um objeto', async () => {
+      const response = await ProductModel.create(createProduct);
+      expect(response).to.be.a('object')
+    });
+
+    it('tal objeto possui o "id" do novo produto inserido', async () => {
+      const response = await ProductModel.create(createProduct);
+      expect(response).to.have.a.property('id')
+    });
+  });
+
+  describe('verifica função Update se produto é editado com sucesso', () => {
     const updateProduct = {
       id: 1,
       name: "produto",

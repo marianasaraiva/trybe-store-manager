@@ -4,15 +4,12 @@ const { expect } = require('chai');
 const ProductService = require('../../../services/productsServices');
 const ProductController = require('../../../controllers/productsControllers');
 
-// reject
-// req = {params: {}} => na rota getById
 describe('ProductController', () => {
   const response = {};
   const request = {};
 
   describe('Verifica se a função getAll está retornando com erros quando não retornar produtos', () => {
     before(() => {
-      // request.body = {};
       response.status = sinon.stub().returns(response);
       response.json = sinon.stub().returns();
 
@@ -49,7 +46,6 @@ describe('ProductController', () => {
     ];
 
     before(() => {
-      // request.body = getAllProduct;
       response.status = sinon.stub().returns(response);
       response.json = sinon.stub().returns();
 
@@ -131,35 +127,58 @@ describe('ProductController', () => {
     });
   });
 
-  // describe('Verifica se a função Create está adicionado novas vendas', () => {
-  //   const request = { name: "produto", quantity: 15 };
-  //   const createReturnProducts = { id: 1, name: "produto", quantity: 15 };
-  //   // const createReqProducts = { name: "produto", quantity: 15 };
+  describe('Verifica se a função Create está adicionado novos produtos', () => {
+    request.body = { name: "produto", quantity: 15 };
+    const createReturnProducts = { id: 1, name: "produto", quantity: 15 };
 
-  //   before(() => {
-  //     // request.body = createReqProducts;
-  //     response.status = sinon.stub().returns(response);
-  //     response.json = sinon.stub().returns();
+    before(() => {
+      response.status = sinon.stub().returns(response);
+      response.json = sinon.stub().returns();
 
-  //     sinon.stub(ProductService, 'getAll').resolves(createReturnProducts);
-  //   });
+      sinon.stub(ProductService, 'create').resolves(createReturnProducts);
+    });
 
-  //   after(async () => {
-  //     ProductService.create.restore();
-  //   });
+    after(async () => {
+      ProductService.create.restore();
+    });
 
-  //   console.log(request);
+    it('é chamado o status com o código 201', async () => {
+      await ProductController.create(request, response);
+      expect(response.status.calledWith(201)).to.be.equal(true);
+    });
 
-  //   it('é chamado o status com o código 201', async () => {
-  //     await ProductController.create(request, response);
-  //     console.log(await ProductController.create(request, response));
-  //     expect(response.status.calledWith(201)).to.be.equal(true);
-  //   });
+    it('é chamado o json com o objeto', async () => {
+      await ProductController.create(request, response);
+      expect(response.json.calledWith(createReturnProducts)).to.be.equal(true);
+    });
+  });
 
-  //   // it('é chamado o json com o objeto', async () => {
-  //   //   await ProductController.create(request, response);
-  //   //   expect(response.json.calledWith(createReturnProducts)).to.be.equal(true);
-  //   // });
-  // });
+  describe('Verifica se a função Update está atualizando os produtos', () => {
+    request.body = { name: "produto", quantity: 15 };
+    request.params = { id: 1 };
+    const updateProducts = { id: 1, name: "produto", quantity: 15 };
+  
+
+    before(() => {
+      response.status = sinon.stub().returns(response);
+      response.json = sinon.stub().returns();
+
+      sinon.stub(ProductService, 'update').resolves(updateProducts);
+    });
+
+    after(async () => {
+      ProductService.update.restore();
+    });
+
+    it('é chamado o status com o código 200', async () => {
+      await ProductController.update(request, response);
+      expect(response.status.calledWith(200)).to.be.equal(true);
+    });
+
+    it('é chamado o json com o objeto', async () => {
+      await ProductController.update(request, response);
+      expect(response.json.calledWith(updateProducts)).to.be.equal(true);
+    });
+  });
 
 });

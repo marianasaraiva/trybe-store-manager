@@ -5,38 +5,7 @@ const ProductModel = require('../../../models/productsModels');
 const ProductService = require('../../../services/productsServices');
 
 describe('ProductService', () => {
-  describe('verifica se produto é inserido com sucesso', () => {
-    const createProduct = {
-      id: 1,
-      name: "produto A",
-      quantity: 10
-    }
-
-    before(async () => {
-      const executeName = [];
-      sinon.stub(ProductModel, 'getByName').resolves(executeName);
-
-      const execute = createProduct;
-      sinon.stub(ProductModel, 'create').resolves(execute);
-    });
-
-    after(async () => {
-      ProductModel.getByName.restore();
-      ProductModel.create.restore();
-    });
-
-    it('retorna um objeto', async () => {
-      const response = await ProductService.create({ name: "produto A", quantity: 10 });
-      expect(response).to.be.an('object')
-    });
-
-    it('tal objeto possui o "id" do novo produto inserido', async () => {
-      const response = await ProductService.create(createProduct);
-      expect(response).to.have.a.property('id')
-    });
-  });
-
-  describe('verifica se produto retorna com sucesso', () => {
+  describe('verifica função GetAll se produtos retornam com sucesso', () => {
     const getAllProduct = [
       {
         "id": 1,
@@ -70,7 +39,65 @@ describe('ProductService', () => {
     });
   });
 
-  describe('verifica se produto é editado com sucesso', () => {
+  describe('verifica função GetById se produtos retornam com sucesso', () => {
+    const getByIdProduct =   {
+      "id": 1,
+      "name": "produto A",
+      "quantity": 10
+    }
+
+    before(async () => {
+      const execute = [getByIdProduct];
+      sinon.stub(ProductModel, 'getById').resolves(execute);
+    });
+
+    after(async () => {
+      ProductModel.getById.restore();
+    });
+
+    it('retorna um objeto', async () => {
+      const response = await ProductService.getById(1);
+      expect(response).to.be.an('object')
+    });
+
+    it('tal array de objetos possui "quantity" como propriedade', async () => {
+      const response = await ProductService.getById(1);
+      expect(response).to.have.a.property('quantity');
+    });
+  });
+
+  describe('verifica função Create se produto é inserido com sucesso', () => {
+    const createProduct = {
+      id: 1,
+      name: "produto A",
+      quantity: 10
+    }
+
+    before(async () => {
+      const executeName = [];
+      sinon.stub(ProductModel, 'getByName').resolves(executeName);
+
+      const execute = createProduct;
+      sinon.stub(ProductModel, 'create').resolves(execute);
+    });
+
+    after(async () => {
+      ProductModel.getByName.restore();
+      ProductModel.create.restore();
+    });
+
+    it('retorna um objeto', async () => {
+      const response = await ProductService.create({ name: "produto A", quantity: 10 });
+      expect(response).to.be.an('object')
+    });
+
+    it('tal objeto possui o "id" do novo produto inserido', async () => {
+      const response = await ProductService.create(createProduct);
+      expect(response).to.have.a.property('id')
+    });
+  });
+
+  describe('verifica função Update se produto é editado com sucesso', () => {
     const updateProduct = {
       id: 1,
       name: "serviço",

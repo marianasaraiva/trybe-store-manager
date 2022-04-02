@@ -46,7 +46,6 @@ describe('SaleController', () => {
     ]
 
     before(() => {
-      // request.body = getAllProduct;
       response.status = sinon.stub().returns(response);
       response.json = sinon.stub().returns();
 
@@ -127,6 +126,88 @@ describe('SaleController', () => {
     it('é chamado o json retorna array', async () => {
       await SaleController.getById(request, response);
       expect(response.json.calledWith(sinon.match.array)).to.be.equal(true);
+    });
+  });
+
+  describe('Verifica se a função Create está adicionado novas vendas', () => {
+    request.body = [
+      {
+        "productId": 1,
+        "quantity": 3
+      }
+    ];
+
+    const createSale = {
+      "id": 1,
+      "itemsSold": [
+        {
+          "productId": 1,
+          "quantity": 3
+        }
+      ]
+    }
+
+    before(() => {
+      response.status = sinon.stub().returns(response);
+      response.json = sinon.stub().returns();
+
+      sinon.stub(SaleService, 'create').resolves(createSale);
+    });
+
+    after(async () => {
+      SaleService.create.restore();
+    });
+
+    it('é chamado o status com o código 201', async () => {
+      await SaleController.create(request, response);
+      expect(response.status.calledWith(201)).to.be.equal(true);
+    });
+
+    it('é chamado o json com o objeto', async () => {
+      await SaleController.create(request, response);
+      expect(response.json.calledWith(createSale)).to.be.equal(true);
+    });
+  });
+
+  describe('Verifica se a função Update está atualizando novas vendas', () => {
+    request.body = [
+      {
+        "productId": 1,
+        "quantity": 6
+      }
+    ];
+
+    request.params = { id: 1 };
+
+    const updateSales = {
+      "saleId": 1,
+      "itemUpdated": [
+        {
+          "productId": 1,
+          "quantity": 6
+        }
+      ]
+    }
+
+    before(() => {
+      response.status = sinon.stub().returns(response);
+      response.json = sinon.stub().returns();
+
+      sinon.stub(SaleService, 'update').resolves(updateSales);
+    });
+
+    after(async () => {
+      SaleService.update.restore();
+    });
+
+    it('é chamado o status com o código 200', async () => {
+      await SaleController.update(request, response);
+      expect(response.status.calledWith(200)).to.be.equal(true);
+    });
+
+    it('é chamado o json com o objeto', async () => {
+      await SaleController.update(request, response);
+      expect(response.json.calledWith(updateSales)).to.be.equal(true);
     });
   });
 
