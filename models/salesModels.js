@@ -21,7 +21,6 @@ const getById = async (id) => {
   WHERE sp.sale_id = ?
   ORDER BY s.id, sp.product_id`;
   const [result] = await connection.execute(query, [id]);
-  console.log("Model ID", result);
   return result;
 };
 
