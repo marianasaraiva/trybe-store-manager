@@ -21,6 +21,7 @@ const getById = async (id) => {
   WHERE sp.sale_id = ?
   ORDER BY s.id, sp.product_id`;
   const [result] = await connection.execute(query, [id]);
+  console.log("Model ID", result);
   return result;
 };
 
@@ -57,9 +58,15 @@ const update = async ({ productId, quantity, saleId }) => {
   };
 };
 
+const deleteById = async (saleId) => {
+  const query = 'DELETE FROM StoreManager.sales_products WHERE sale_id = ?';
+  await connection.execute(query, [saleId]);
+};
+
 module.exports = {
   getAll,
   getById,
   create,
   update,
+  deleteById,
 };

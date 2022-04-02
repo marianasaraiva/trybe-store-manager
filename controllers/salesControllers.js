@@ -52,9 +52,27 @@ const update = async (req, res, next) => {
   }
 };
 
+const deleteById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const saleById = await SaleService.deleteById(id);
+    console.log('controller delete', saleById);
+
+    if (!saleById) {
+      return res.status(404).json({ message: 'Sale not found' });
+    }
+
+    return res.status(204).end();
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getAll,
   getById,
   create,
   update,
+  deleteById,
 };

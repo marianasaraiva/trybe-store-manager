@@ -51,5 +51,4 @@ module.exports = {
   create,
   update,
   deleteById,
-  // funcJoi,
 };
