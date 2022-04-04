@@ -41,10 +41,9 @@ const create = async (req, res, next) => {
 const update = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const productUpdate = req.body[0];
-    productUpdate.saleId = id;
+    const productUpdate = req.body;
 
-    const updateProduct = await SaleService.update(productUpdate);
+    const updateProduct = await SaleService.update(id, productUpdate);
 
     res.status(200).json(updateProduct);
   } catch (error) {

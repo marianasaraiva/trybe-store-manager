@@ -15,12 +15,11 @@ const getById = async (id) => {
 
 const create = async (array) => {
   const result = await SalesModel.create(array);
-
   return result;
 };
 
-const update = async (productUpdate) => {
-  const updateProduct = await SalesModel.update(productUpdate);
+const update = async (id, productUpdate) => {
+  const updateProduct = await SalesModel.update(id, productUpdate);
 
   return updateProduct;
 };

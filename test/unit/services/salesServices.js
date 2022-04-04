@@ -87,7 +87,6 @@ describe('SalesService', () => {
     }
 
     before(async () => {
-
       const execute = updateSale;
       sinon.stub(SaleModel, 'update').resolves(execute);
     });

@@ -70,25 +70,21 @@ describe('salesModels', () => {
     });
 
     it('tal array de objetos possui "date" como propriedade', async () => {
-      const response = await SaleModel.getById();
+      const response = await SaleModel.getById(1);
       response.forEach((e) => expect(e).to.have.a.property('date'));
     });
   });
 
   describe('verifica função Update se venda é editada com sucesso', () => {
-    const updateSales = {
-      "saleId": 1,
-      "itemUpdated": [
+    const updateSales = [
         {
           "productId": 1,
           "quantity": 6
         }
-      ]
-    }
+      ];
 
     before(async () => {
-      const execute = updateSales;
-      sinon.stub(connection, 'execute').resolves(execute);
+      sinon.stub(connection, 'execute').resolves();
     });
 
     after(async () => {
@@ -96,14 +92,43 @@ describe('salesModels', () => {
     });
 
     it('retorna um objeto', async () => {
-      const response = await SaleModel.update(updateSales);
-      expect(response).to.be.an('object')
+      const response = await SaleModel.update(1, updateSales);
+      console.log(response);
+      expect(response).to.be.an('object');
     });
 
     it('tal objeto possui o "itemUpdated" como propriedade', async () => {
-      const response = await SaleModel.update(updateSales);
+      const response = await SaleModel.update(1, updateSales);
       expect(response).to.have.a.property('itemUpdated')
     });
   });
+
+  describe('verifica função create realizada com sucesso', () => {
+    const createSale = [
+      {
+        "productId": 1,
+        "quantity": 3
+      }
+    ];
+
+      before(async () => {
+        const execute = [[{ insertId: 2 }]];
+        sinon.stub(connection, 'execute').resolves(execute);
+      });
+    
+      after(async () => {
+        connection.execute.restore();
+      });
+
+      it('retorna um objeto', async () => {
+        const response = await SaleModel.create(createSale);
+        expect(response).to.be.an('object');
+      });
+
+      it('retorna um objeto com o "id" da venda criada', async () => {
+        const response = await SaleModel.create(createSale);
+        expect(response).to.have.a.property('id');
+      });
+    });
 
 });
