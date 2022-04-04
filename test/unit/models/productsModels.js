@@ -26,7 +26,7 @@ describe('ProductModel', () => {
 
     after(async () => {
       connection.execute.restore();
-    });
+    }); 
 
     it('retorna um array', async () => {
       const response = await ProductModel.getAll();
