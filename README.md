@@ -25,12 +25,15 @@ A API a ser construída trata-se de um sistema de gerenciamento de vendas, onde 
 
 ## :dart: Instruções para visualizar o projeto:
 
-1. Realizar o git clone;
+1.0 Realizar o git clone;
+
 1.1 Realizar o npm install;
+
 1.2 Criar arquivo .env na raiz do projeto;
+
 1.3 Setar as variavéis de ambiente no arquivo .env:
 - MYSQL_HOST: nome do host
 - MYSQL_USER: nome do usuário
 - MYSQL_PASSWORD: password
 
-2. Documentação da API: 
+2.0 Documentação da API: 
