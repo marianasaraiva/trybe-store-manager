@@ -25,15 +25,17 @@ A API a ser construída trata-se de um sistema de gerenciamento de vendas, onde 
 
 ## :dart: Instruções para visualizar o projeto:
 
-1.0 Realizar o git clone;
+1. Como baixar o projeto
 
-1.1 Realizar o npm install;
+- Realizar o git clone: `git clone git@github.com:marianasaraiva/trybe-store-manager.git`;
 
-1.2 Criar arquivo .env na raiz do projeto;
+- Rodar o comando: `npm install`;
 
-1.3 Setar as variavéis de ambiente no arquivo .env:
-- MYSQL_HOST: nome do host
-- MYSQL_USER: nome do usuário
-- MYSQL_PASSWORD: password
+- Criar um arquivo `.env` na raiz do projeto;
 
-2.0 Documentação da API: 
+- Setar as variavéis de ambiente no arquivo `.env`:
+  - `MYSQL_HOST=<nomeDoHost>`
+  - `MYSQL_USER=<nomeDoUsuário>`
+  - `MYSQL_PASSWORD=<password>`
+
+2. Documentação da API: 
