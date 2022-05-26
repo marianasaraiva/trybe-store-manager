@@ -25,7 +25,7 @@ A API construída trata-se de um sistema de gerenciamento de vendas, onde foi po
 
 ## :dart: Instruções para visualizar o projeto
 
-1. Como baixar o projeto
+Como baixar o projeto
 
 - Realizar o git clone: `git clone git@github.com:marianasaraiva/trybe-store-manager.git`;
 - Rodar o comando: `npm install`;
@@ -40,10 +40,10 @@ A API construída trata-se de um sistema de gerenciamento de vendas, onde foi po
   MYSQL_PASSWORD=<password>
 ```
 
-2. Documentação da API: 
+### :warning: Atenção: Documentação da API: 
   - [Disponivel neste link](https://documenter.getpostman.com/view/20097451/Uz5AryNY)
 
-## :dart: Tabela
+## :wrench: Tabela
 ```
 DROP DATABASE IF EXISTS StoreManager;
 
