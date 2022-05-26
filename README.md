@@ -18,9 +18,9 @@ Construir uma API :
 
 ## :wrench: O que foi desenvolvido
 
-Desenvolvido primeira API utilizando a arquitetura MSC!
+Desenvolvido API utilizando a arquitetura MSC!
 
-A API a ser construída trata-se de um sistema de gerenciamento de vendas, onde será possível criar, visualizar, deletar e atualizar produtos e vendas.
+A API construída trata-se de um sistema de gerenciamento de vendas, onde foi possível criar, visualizar, deletar e atualizar produtos e vendas, ou seja, realizar o CRUD(Create, Read, Update, Delete).
 
 
 ## :dart: Instruções para visualizar o projeto:
@@ -28,9 +28,9 @@ A API a ser construída trata-se de um sistema de gerenciamento de vendas, onde 
 1. Como baixar o projeto
 
 - Realizar o git clone: `git clone git@github.com:marianasaraiva/trybe-store-manager.git`;
-
 - Rodar o comando: `npm install`;
-
+- Inicie o projeto com `npm start` ou `npm run dev`
+- Rode os testes com `npm test` ou `npm run test:mocha`
 - Criar um arquivo `.env` na raiz do projeto;
 
 - Setar as variavéis de ambiente no arquivo `.env`:
