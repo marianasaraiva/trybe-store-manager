@@ -41,6 +41,7 @@ A API construída trata-se de um sistema de gerenciamento de vendas, onde foi po
 ```
 
 2. Documentação da API: 
+  - [Disponivel neste link](https://documenter.getpostman.com/view/20097451/Uz5AryNY)
 
 ## :dart: Tabela
 ```
