@@ -34,8 +34,10 @@ A API construída trata-se de um sistema de gerenciamento de vendas, onde foi po
 - Criar um arquivo `.env` na raiz do projeto;
 
 - Setar as variavéis de ambiente no arquivo `.env`:
-  - `MYSQL_HOST=<nomeDoHost>`
-  - `MYSQL_USER=<nomeDoUsuário>`
-  - `MYSQL_PASSWORD=<password>`
+```
+  MYSQL_HOST=<nomeDoHost>
+  MYSQL_USER=<nomeDoUsuário>
+  MYSQL_PASSWORD=<password>
+```
 
 2. Documentação da API: 
