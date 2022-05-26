@@ -23,7 +23,7 @@ Desenvolvido API utilizando a arquitetura MSC!
 A API construída trata-se de um sistema de gerenciamento de vendas, onde foi possível criar, visualizar, deletar e atualizar produtos e vendas, ou seja, realizar o CRUD(Create, Read, Update, Delete).
 
 
-## :dart: Instruções para visualizar o projeto:
+## :dart: Instruções para visualizar o projeto
 
 1. Como baixar o projeto
 
